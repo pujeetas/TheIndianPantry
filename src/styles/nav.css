@@ -1,0 +1,138 @@
+/* ── Nav ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 5%;
+  transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+}
+
+.nav.scrolled {
+  background: var(--cream);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  padding: 0.75rem 5%;
+}
+
+/* ── Brand ── */
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--brown);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.nav-brand span {
+  color: var(--saffron);
+}
+
+/* ── Right side ── */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ── Links ── */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--brown);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--saffron);
+}
+
+/* ── WhatsApp button ── */
+.btn-wa-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--saffron);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.btn-wa-nav:hover {
+  background: #b85f1c;
+  transform: translateY(-1px);
+}
+
+/* ── Hamburger ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--brown);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--cream);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 1rem 5%;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    border-bottom: 1px solid rgba(92, 46, 10, 0.1);
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.85rem 0;
+    font-size: 1rem;
+  }
+}
