@@ -52,7 +52,7 @@ export default function Hero() {
         <div className="hero-visual">
           <img
             src="/HeroImg.png"
-            alt="Fresh Homemade Paneer – The Indian Pantry"
+            alt="Fresh Homemade Paneer – The Paneer Pantry"
             className="hero-product-img"
           />
         </div>

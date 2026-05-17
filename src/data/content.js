@@ -1,4 +1,4 @@
-export const WA_NUMBER = "6565XXXXXX";
+export const WA_NUMBER = "6587700233";
 export const WA_BASE = `https://wa.me/${WA_NUMBER}`;
 
 export const products = [

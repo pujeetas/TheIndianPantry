@@ -15,7 +15,7 @@ export default function Nav() {
   return (
     <nav className={`nav${scrolled ? " scrolled" : ""}`}>
       <a className="nav-brand" href="#">
-        The Indian <span>Pantry</span>
+        The Paneer <span>Pantry</span>
       </a>
       <div className="nav-right">
         <ul className={`nav-links${open ? " open" : ""}`}>
