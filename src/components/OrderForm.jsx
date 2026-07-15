@@ -21,7 +21,7 @@ const EMPTY_FORM = {
 
 function buildMessage(form) {
   const lines = [
-    "Hi! I'd like to place an order on The Indian Pantry website:",
+    "Hi! I'd like to place an order on The Paneer Pantry website:",
     "",
     `Name: ${form.name}`,
     `Phone: ${form.phone}`,
