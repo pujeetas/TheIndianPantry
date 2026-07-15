@@ -1,7 +1,7 @@
-import { products, WA_BASE } from "../data/content";
+import { products } from "../data/content";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 
-export default function Products() {
+export default function Products({ onOrder }) {
   return (
     <section className="products" id="products">
       <div className="section-header reveal">
@@ -38,14 +38,13 @@ export default function Products() {
                   p.price
                 )}
               </div>
-              <a
+              <button
+                type="button"
                 className="btn-order"
-                href={`${WA_BASE}?text=${encodeURIComponent(p.waText)}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => onOrder(p.label)}
               >
                 <WhatsAppIcon size={16} /> Order via WhatsApp
-              </a>
+              </button>
             </div>
           </div>
         ))}

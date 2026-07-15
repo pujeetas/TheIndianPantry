@@ -1,7 +1,7 @@
-import { steps, WA_BASE, WA_NUMBER } from "../data/content";
+import { steps, WA_NUMBER, pickup } from "../data/content";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 
-export default function HowToOrder() {
+export default function HowToOrder({ onOrder }) {
   return (
     <section className="how" id="how">
       <div className="how-inner">
@@ -33,6 +33,21 @@ export default function HowToOrder() {
           </p>
         </div>
 
+        <div className="delivery-policy reveal">
+          <h4>🏠 Pickup Option</h4>
+          <p className="delivery-note no-border">
+            Nearby? Choose <strong>Pickup</strong> in the order form and pick
+            a date — no delivery fee. We'll confirm your pickup time with you
+            over WhatsApp.
+          </p>
+          <div className="delivery-slots single">
+            <div className="slot-item">
+              <div className="slot-time">Pickup Address</div>
+              <div className="slot-desc">{pickup.address}</div>
+            </div>
+          </div>
+        </div>
+
         <div className="steps reveal">
           {steps.map((s) => (
             <div className="step" key={s.num}>
@@ -45,14 +60,13 @@ export default function HowToOrder() {
         </div>
 
         <div className="how-cta reveal">
-          <a
+          <button
+            type="button"
             className="btn-primary"
-            href={WA_BASE}
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={() => onOrder()}
           >
             <WhatsAppIcon size={18} /> Start Your Order
-          </a>
+          </button>
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
-import { WA_BASE } from "../data/content";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 
-export default function Hero() {
+export default function Hero({ onOrder }) {
   return (
     <section className="hero">
       <div className="hero-inner">
@@ -17,7 +16,7 @@ export default function Hero() {
           </h1>
           <p className="hero-tagline">From our home kitchen to your table</p>
           <p className="hero-desc">
-            Crafted from Amul full-cream milk with no additives or
+            Crafted from Fresh full-cream milk with no additives or
             preservatives. Pre-order your paneer and enjoy same-day freshness
             delivered to your door.
           </p>
@@ -26,14 +25,13 @@ export default function Hero() {
             <strong>tomorrow</strong>. Order after 2pm = delivered in 2 days.
           </div>
           <div className="hero-btns">
-            <a
+            <button
+              type="button"
               className="btn-primary"
-              href={WA_BASE}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => onOrder()}
             >
               <WhatsAppIcon size={18} /> Order on WhatsApp
-            </a>
+            </button>
             <a className="btn-ghost" href="#products">
               View Products
             </a>
@@ -44,7 +42,7 @@ export default function Hero() {
               Made Fresh Daily
             </span>
             <span className="pill">No Preservatives</span>
-            <span className="pill">Amul Milk</span>
+            <span className="pill">Fresh Milk</span>
             <span className="pill">Singapore-Made</span>
           </div>
         </div>

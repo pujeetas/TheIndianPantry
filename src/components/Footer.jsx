@@ -80,7 +80,7 @@ export default function Footer() {
         <div className="footer-badges">
           <span className="badge">SFA Compliant</span>
           <span className="badge">No Preservatives</span>
-          <span className="badge">Amul Milk</span>
+          <span className="badge">Fresh Milk</span>
         </div>
       </div>
     </footer>

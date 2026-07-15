@@ -12,7 +12,7 @@ export default function About() {
           <p className="about-body">
             The Indian Pantry was born out of a simple frustration — the
             supermarket paneer never tasted like home. So we started making our
-            own, the traditional way: Amul full-cream milk, a squeeze of lemon,
+            own, the traditional way: full-cream milk, a squeeze of lemon,
             and patience. Word spread among friends and neighbours, and here we
             are.
             <br />
@@ -25,7 +25,7 @@ export default function About() {
           <div className="stat-grid">
             <div className="stat-item">
               <div className="stat-num">100%</div>
-              <div className="stat-label">Amul full-cream milk</div>
+              <div className="stat-label">Full-cream milk</div>
             </div>
             <div className="stat-item">
               <div className="stat-num">0</div>
@@ -46,9 +46,9 @@ export default function About() {
           <div className="card-big">
             <div className="icon-circle">🥛</div>
             <div>
-              <h3>Amul Full-Cream Milk</h3>
+              <h3>Full-Cream Milk</h3>
               <p>
-                We use Amul full-cream milk — trusted by Indian households for
+                We use full-cream milk — trusted by Indian households for
                 generations. Rich, consistent, and free from shortcuts like
                 powdered or reconstituted milk.
               </p>
