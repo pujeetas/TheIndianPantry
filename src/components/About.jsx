@@ -10,7 +10,7 @@ export default function About() {
             Real Flavour.
           </h2>
           <p className="about-body">
-            The Indian Pantry was born out of a simple frustration — the
+            The Paneer Pantry was born out of a simple frustration — the
             supermarket paneer never tasted like home. So we started making our
             own, the traditional way: full-cream milk, a squeeze of lemon,
             and patience. Word spread among friends and neighbours, and here we

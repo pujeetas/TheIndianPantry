@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="footer-top">
         <div className="footer-brand">
           <h2>
-            The Indian <span>Pantry</span>
+            The Paneer <span>Pantry</span>
           </h2>
           <p>
             Fresh homemade paneer made daily in Singapore.
@@ -75,7 +75,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <span className="footer-copy">
-          © {new Date().getFullYear()} The Indian Pantry. All rights reserved.
+          © {new Date().getFullYear()} The Paneer Pantry. All rights reserved.
         </span>
         <div className="footer-badges">
           <span className="badge">SFA Compliant</span>
