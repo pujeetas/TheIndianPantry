@@ -7,6 +7,7 @@ import {
   products,
 } from "../data/content";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
+import Icon from "./icons/Icon";
 
 const EMPTY_FORM = {
   name: "",
@@ -74,7 +75,11 @@ export default function OrderForm({ isOpen, initialProduct, onClose }) {
     if (!isOpen) return;
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -96,16 +101,25 @@ export default function OrderForm({ isOpen, initialProduct, onClose }) {
 
   return (
     <div className="order-modal-overlay" onClick={onClose}>
-      <div className="order-modal" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="order-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="order-modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
+          type="button"
           className="order-modal-close"
           aria-label="Close"
           onClick={onClose}
         >
-          ×
+          <Icon name="close" size={18} strokeWidth={1.8} />
         </button>
 
-        <h3 className="order-modal-title">Place Your Order</h3>
+        <h2 className="order-modal-title" id="order-modal-title">
+          Place your order
+        </h2>
         <p className="order-modal-subtitle">
           We'll open WhatsApp with your details filled in — just hit send to
           confirm with us.
@@ -207,9 +221,12 @@ export default function OrderForm({ isOpen, initialProduct, onClose }) {
             </label>
           ) : (
             <p className="pickup-note">
-              📍 Pickup at <strong>{pickup.address}</strong>
-              <br />
-              🕑 We'll confirm your pickup time over WhatsApp.
+              <Icon name="pin" size={17} />
+              <span>
+                Pickup at <strong>{pickup.address}</strong>
+                <br />
+                We&apos;ll confirm your collection time over WhatsApp.
+              </span>
             </p>
           )}
 
@@ -222,9 +239,17 @@ export default function OrderForm({ isOpen, initialProduct, onClose }) {
             />
           </label>
 
-          <button type="submit" className="btn-order order-form-submit">
-            <WhatsAppIcon size={16} /> Continue on WhatsApp
+          <button
+            type="submit"
+            className="btn btn-primary btn-block order-form-submit"
+          >
+            <WhatsAppIcon size={17} /> Continue on WhatsApp
           </button>
+
+          <p className="order-modal-fineprint">
+            Nothing is charged here — this opens WhatsApp so we can confirm
+            availability and send PayNow details.
+          </p>
         </form>
       </div>
     </div>

@@ -6,12 +6,15 @@ export const products = [
     id: 1,
     name: "Fresh Paneer",
     weight: "200g",
+    // `label` is logged verbatim to the order Sheet — don't reword it.
     label: "Fresh Paneer – 200g ($10.00)",
-    desc: "Silky, firm-pressed homemade paneer made fresh from full-cream milk. Perfect for curries, stir-fries, and paneer tikka. Minimum order.",
+    desc: "Silky, firm-pressed homemade paneer made fresh from full-cream milk. Perfect for curries, stir-fries, and paneer tikka.",
     price: "$10.00",
     tag: "Best Seller",
-    emoji: "🧀",
-    bg: "linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%)",
+    featured: true,
+    img: "/img/paneer-200.jpg",
+    alt: "Freshly pressed paneer cubes with coriander",
+    meta: "Minimum order",
   },
   {
     id: 2,
@@ -21,8 +24,10 @@ export const products = [
     desc: "Great value for larger households or weekly meal prep. Same fresh milk quality — more to cook with, more to love.",
     price: "$19.00",
     tag: "Value Pack",
-    emoji: "🧀",
-    bg: "linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%)",
+    featured: false,
+    img: "/img/paneer-400.jpg",
+    alt: "A wooden platter stacked with fresh paneer blocks",
+    meta: "Save $1",
   },
   {
     id: 3,
@@ -32,9 +37,51 @@ export const products = [
     desc: "Hosting a dinner party, festival, or event? Reach out for custom quantities and we'll work out the best arrangement for you.",
     price: "Let's chat",
     tag: "Custom",
-    emoji: "🛒",
-    bg: "linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%)",
+    featured: false,
+    img: "/img/paneer-bulk.jpg",
+    alt: "Close crop of paneer blocks on a wooden platter",
+    meta: "Parties & events",
   },
+];
+
+/* The strip under the hero — the four things a first-time buyer wants
+   to know before they'll consider ordering. */
+export const trustPoints = [
+  { icon: "milk", label: "Full-cream milk" },
+  { icon: "shield", label: "Zero preservatives" },
+  { icon: "clock", label: "Made the day it ships" },
+  { icon: "truck", label: "Delivered islandwide" },
+];
+
+/* About-section values grid. */
+export const values = [
+  {
+    icon: "milk",
+    title: "Full-Cream Milk",
+    desc: "A trusted Indian dairy brand — never powdered or reconstituted.",
+  },
+  {
+    icon: "home",
+    title: "Home Kitchen",
+    desc: "Made in a clean home kitchen, not a factory line. Every block gets the same care.",
+  },
+  {
+    icon: "calendar",
+    title: "Pre-Order Only",
+    desc: "We make exactly what's ordered. Nothing sits on a shelf, nothing is wasted.",
+  },
+  {
+    icon: "leaf",
+    title: "No Shortcuts",
+    desc: "Made the traditional way, with nothing extra — no stabilisers, no preservatives.",
+  },
+];
+
+export const stats = [
+  { num: "100%", label: "Full-cream milk" },
+  { num: "0", label: "Preservatives" },
+  { num: "Same-day", label: "Made to order" },
+  { num: "SG", label: "Home-made" },
 ];
 
 // Pickup address shown on-site and referenced in order confirmations.
@@ -63,21 +110,21 @@ export const GOOGLE_FORM_ENTRY_IDS = {
 export const steps = [
   {
     num: "01",
-    emoji: "💬",
-    title: "Message Us",
-    desc: "Send us a WhatsApp message with your quantity. Orders before 2pm are delivered next day.",
+    icon: "chat",
+    title: "Send Your Order",
+    desc: "Fill in the form and it opens WhatsApp with everything filled in. Order before 2pm for next-day delivery.",
   },
   {
     num: "02",
-    emoji: "✅",
+    icon: "card",
     title: "Confirm & Pay",
-    desc: "We'll confirm your slot and send PayNow details. Payment upfront to confirm your order.",
+    desc: "We'll confirm your slot and send PayNow details. Payment upfront locks in your batch.",
   },
   {
     num: "03",
-    emoji: "🧀",
+    icon: "truck",
     title: "Fresh to Your Door",
-    desc: "We make your paneer fresh on delivery day and bring it straight to you — same-day made.",
+    desc: "We press your paneer on delivery morning and bring it to you the same day it's made.",
   },
 ];
 
@@ -96,7 +143,7 @@ export const faqs = [
   },
   {
     q: "Does it contain any preservatives or additives?",
-    a: "None at all. Just full-cream milk and a natural acid (lemon juice or citric acid) to curdle the milk. That's it.",
+    a: "None at all — no preservatives, no stabilisers, nothing artificial. Just fresh full-cream milk, set and pressed the traditional way.",
   },
   {
     q: "What allergens are present?",
@@ -116,6 +163,6 @@ export const faqs = [
   },
   {
     q: "Can I pick up instead of getting it delivered?",
-    a: "Yes! Choose \"Pickup\" in the order form and we'll confirm a time slot with you over WhatsApp. No delivery fee for pickup orders.",
+    a: 'Yes! Choose "Pickup" in the order form and we\'ll confirm a time slot with you over WhatsApp. No delivery fee for pickup orders.',
   },
 ];

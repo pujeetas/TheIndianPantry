@@ -1,15 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('./tokens.css');
 
-:root {
-  --saffron: #D4782A;
-  --green: #2B4D12;
-  --cream: #FAF6EE;
-  --brown: #5C2E0A;
-  --muted: #7A5C42;
-  --r-pill: 50px;
-  --r-lg: 24px;
-  --r-md: 12px;
-}
+/* ═══════════════════════════════════════════════════════════
+   RESET + BASE
+   ═══════════════════════════════════════════════════════════ */
 
 *,
 *::before,
@@ -21,61 +15,132 @@
 
 html {
   scroll-behavior: smooth;
+  /* clears the fixed nav when jumping to an anchor */
+  scroll-padding-top: 96px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: #2a1a0a;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  background: var(--cream-100);
+  color: var(--ink);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Keyframes ── */
+/* Paper grain — stops the big flat cream fields reading as dead
+   digital space. Non-interactive, sits above everything. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--saffron);
+  color: #fff;
+}
+
+/* Visible focus for keyboard users only */
+:focus-visible {
+  outline: 2.5px solid var(--saffron-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT PRIMITIVES
+   ═══════════════════════════════════════════════════════════ */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--sp-section);
+  position: relative;
+}
+
+.section--tint {
+  background: var(--cream-200);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   KEYFRAMES
+   ═══════════════════════════════════════════════════════════ */
+
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(26px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
-@keyframes bob {
-  0% {
-    transform: translateY(0px) rotate(-1deg);
-  }
-
-  50% {
-    transform: translateY(-18px) rotate(1.5deg);
-  }
-
-  100% {
-    transform: translateY(0px) rotate(-1deg);
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes scaleIn {
+@keyframes archIn {
   from {
     opacity: 0;
-    transform: scale(0.88);
+    transform: translateY(34px) scale(0.965);
   }
 
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: none;
   }
 }
 
-@keyframes pulse {
+@keyframes pulseDot {
 
   0%,
   100% {
@@ -84,96 +149,258 @@ body {
   }
 
   50% {
-    transform: scale(1.35);
-    opacity: 0.6;
+    transform: scale(1.5);
+    opacity: 0.45;
   }
 }
 
-/* ── Reveal ── */
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════════════════════ */
+
 .reveal {
   opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(30px);
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
 }
 
 .reveal.vis {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
-/* ── Shared Buttons ── */
-.btn-primary {
+/* ═══════════════════════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════════════════════ */
+
+.btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.55rem;
-  background: var(--saffron);
-  color: #fff;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 600;
-  padding: 0.75rem 1.6rem;
+  letter-spacing: 0.005em;
+  line-height: 1;
+  padding: 0.95rem 1.75rem;
   border-radius: var(--r-pill);
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 18px rgba(212, 120, 42, 0.30);
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+  transition: background var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease),
+    box-shadow var(--t-mid) var(--ease);
+}
+
+.btn svg {
+  flex-shrink: 0;
+}
+
+/* Primary — saffron, with a light sweep on hover */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: var(--saffron);
+  color: #fff;
+  box-shadow: var(--sh-saffron);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.28) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.65s var(--ease-out);
 }
 
 .btn-primary:hover {
-  background: #b85f1c;
+  background: #C06A22;
   transform: translateY(-2px);
-  box-shadow: 0 7px 22px rgba(212, 120, 42, 0.38);
+  box-shadow: 0 6px 18px rgba(184, 95, 28, 0.34), 0 18px 40px rgba(184, 95, 28, 0.22);
 }
 
+.btn-primary:hover::after {
+  transform: translateX(120%);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Ghost — hairline outline on cream */
 .btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
   background: transparent;
   color: var(--brown);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 0.72rem 1.5rem;
-  border-radius: var(--r-pill);
-  text-decoration: none;
-  border: 2px solid var(--brown);
-  transition: background 0.2s, color 0.2s, transform 0.15s;
+  border-color: var(--cream-400);
 }
 
 .btn-ghost:hover {
   background: var(--brown);
-  color: #fff;
+  border-color: var(--brown);
+  color: var(--cream-50);
   transform: translateY(-2px);
 }
 
-/* ── Shared Section Headers ── */
-.section-header {
-  text-align: center;
-  max-width: 560px;
-  margin: 0 auto 3.5rem;
+/* On dark bands */
+.btn-light {
+  background: var(--cream-50);
+  color: var(--brown);
+  box-shadow: var(--sh-md);
 }
 
-.section-tag {
-  display: inline-block;
-  font-size: 0.75rem;
+.btn-light:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-outline-light {
+  background: transparent;
+  color: var(--cream-100);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  font-size: 0.875rem;
+  padding: 0.7rem 1.25rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION HEADERS
+   ═══════════════════════════════════════════════════════════ */
+
+.section-header {
+  max-width: 640px;
+  margin: 0 auto clamp(2.75rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--fs-label);
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--saffron);
-  margin-bottom: 0.8rem;
+  color: var(--saffron-deep);
+  margin-bottom: 1rem;
+}
+
+.eyebrow--ruled::before,
+.eyebrow--ruled::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--saffron-line);
 }
 
 .section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
   font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.012em;
   color: var(--brown);
-  line-height: 1.18;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--saffron);
 }
 
 .section-desc {
-  font-size: 0.95rem;
+  font-size: var(--fs-lede);
   color: var(--muted);
   line-height: 1.7;
+  max-width: 52ch;
+  margin-inline: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SHARED SMALL PARTS
+   ═══════════════════════════════════════════════════════════ */
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-mid);
+  flex-shrink: 0;
+  animation: pulseDot 2.4s var(--ease) infinite;
+}
+
+/* The ✦ divider lifted from the logo's wordmark rule */
+.flourish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  color: var(--saffron);
+}
+
+.flourish::before,
+.flourish::after {
+  content: '';
+  height: 1px;
+  width: clamp(40px, 12vw, 90px);
+  background: linear-gradient(90deg, transparent, var(--cream-400));
+}
+
+.flourish::after {
+  background: linear-gradient(270deg, transparent, var(--cream-400));
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
