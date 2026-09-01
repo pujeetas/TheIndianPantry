@@ -1,138 +1,268 @@
-/* ── Nav ── */
+/* ═══════════════════════════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════════════════════════ */
+
 .nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 200;
+  transition: background var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease),
+    border-color var(--t-mid) var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+.nav.is-scrolled,
+.nav.is-open {
+  background: rgba(250, 246, 238, 0.86);
+  backdrop-filter: saturate(1.5) blur(14px);
+  -webkit-backdrop-filter: saturate(1.5) blur(14px);
+  border-bottom-color: var(--cream-300);
+  box-shadow: 0 1px 24px rgba(70, 34, 10, 0.06);
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding: 0.9rem var(--gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 5%;
-  transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+  gap: 1.5rem;
+  transition: padding var(--t-mid) var(--ease);
 }
 
-.nav.scrolled {
-  background: var(--cream);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-  padding: 0.75rem 5%;
+.nav.is-scrolled .nav-inner {
+  padding-block: 0.6rem;
 }
 
 /* ── Brand ── */
 .nav-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: var(--brown);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-}
-
-.nav-brand span {
-  color: var(--saffron);
-}
-
-/* ── Right side ── */
-.nav-right {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0.6rem;
+  text-decoration: none;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.nav-logo {
+  height: 42px;
+  width: auto;
+  transition: height var(--t-mid) var(--ease);
+}
+
+.nav.is-scrolled .nav-logo {
+  height: 34px;
+}
+
+.nav-brand-text {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  color: var(--brown);
+  white-space: nowrap;
+}
+
+.nav-brand-text span {
+  color: var(--saffron);
 }
 
 /* ── Links ── */
 .nav-links {
-  list-style: none;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.1rem;
 }
 
 .nav-links a {
+  position: relative;
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--brown);
+  color: var(--brown-mid);
   text-decoration: none;
-  transition: color 0.2s;
+  padding-block: 0.4rem;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--saffron);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--t-mid) var(--ease-out);
 }
 
 .nav-links a:hover {
-  color: var(--saffron);
+  color: var(--saffron-deep);
 }
 
-/* ── WhatsApp button ── */
-.btn-wa-nav {
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── Actions ── */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.nav-phone {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  background: var(--saffron);
-  color: #fff;
   font-size: 0.875rem;
   font-weight: 600;
-  padding: 0.55rem 1.2rem;
-  border-radius: var(--r-pill);
+  color: var(--green);
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
-  white-space: nowrap;
+  transition: color var(--t-fast) var(--ease);
 }
 
-.btn-wa-nav:hover {
-  background: #b85f1c;
-  transform: translateY(-1px);
+.nav-phone:hover {
+  color: var(--saffron-deep);
 }
 
-/* ── Hamburger ── */
-.hamburger {
+.nav-toggle {
   display: none;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
+  width: 42px;
+  height: 42px;
+  margin-right: -8px;
+  border-radius: 50%;
+  color: var(--brown);
+  transition: background var(--t-fast) var(--ease);
 }
 
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--brown);
-  border-radius: 2px;
-  transition: transform 0.25s, opacity 0.25s;
+.nav-toggle:hover {
+  background: var(--saffron-tint);
 }
 
-/* ── Mobile ── */
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
+/* ── Mobile panel ── */
+.nav-panel {
+  display: none;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
   }
 
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1000px) {
   .nav-links {
     display: none;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-panel {
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    background: var(--cream);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    padding: 1rem 5%;
+    max-height: calc(100dvh - 100%);
+    overflow-y: auto;
+    background: var(--cream-100);
+    border-bottom: 1px solid var(--cream-300);
+    box-shadow: var(--sh-lg);
+    padding: 0.5rem var(--gutter) 1.75rem;
+    animation: panelIn 0.28s var(--ease-out) both;
   }
 
-  .nav-links.open {
+  .nav-panel[hidden] {
+    display: none;
+  }
+
+  .nav-panel nav {
     display: flex;
+    flex-direction: column;
   }
 
-  .nav-links li {
-    width: 100%;
-    border-bottom: 1px solid rgba(92, 46, 10, 0.1);
+  .nav-panel nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--brown);
+    text-decoration: none;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--cream-300);
   }
 
-  .nav-links a {
-    display: block;
-    padding: 0.85rem 0;
-    font-size: 1rem;
+  .nav-panel nav a svg {
+    color: var(--saffron);
+    opacity: 0.55;
+  }
+
+  .nav-panel-foot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .nav-panel-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--green);
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-phone {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-brand-text {
+    font-size: 1.18rem;
+  }
+
+  .nav-logo {
+    height: 34px;
+  }
+
+  .nav-actions .btn-sm {
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-brand-text {
+    display: none;
   }
 }
