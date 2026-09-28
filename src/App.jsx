@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Products from "./components/Products";
+import Testimonials from "./components/Testimonials";
 import HowToOrder from "./components/HowToOrder";
 import FAQ from "./components/FAQ";
 import CtaBand from "./components/CtaBand";
@@ -33,6 +34,7 @@ export default function App() {
         <Hero onOrder={openOrder} />
         <About />
         <Products onOrder={openOrder} />
+        <Testimonials />
         <HowToOrder />
         <FAQ />
         <CtaBand onOrder={openOrder} />

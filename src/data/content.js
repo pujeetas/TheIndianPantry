@@ -107,6 +107,15 @@ export const GOOGLE_FORM_ENTRY_IDS = {
   notes: "entry.884601771",
 };
 
+/* Customer reviews, quoted verbatim. Add new entries at the top. */
+export const testimonials = [
+  {
+    quote:
+      "Hi. The paneer was great. Great product. Have shared the details with my friends.",
+    author: "Verified customer",
+  },
+];
+
 export const steps = [
   {
     num: "01",
