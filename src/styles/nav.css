@@ -247,17 +247,29 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
+  .nav-inner {
+    gap: 0.5rem;
+  }
+
+  .nav-brand {
+    gap: 0.45rem;
+  }
+
   .nav-brand-text {
-    font-size: 1.18rem;
+    font-size: 1.05rem;
   }
 
   .nav-logo {
     height: 34px;
   }
 
+  .nav-actions {
+    gap: 0.25rem;
+  }
+
   .nav-actions .btn-sm {
-    padding-inline: 1rem;
+    padding-inline: 0.9rem;
   }
 }
 
