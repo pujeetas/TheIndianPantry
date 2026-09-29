@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  DELIVERY_FEE,
   GOOGLE_FORM_ACTION_URL,
   GOOGLE_FORM_ENTRY_IDS,
   WA_BASE,
@@ -20,7 +21,19 @@ const EMPTY_FORM = {
   notes: "",
 };
 
+// Parses "$10.00" -> 10, or null for non-numeric prices like "Let's chat".
+function parsePrice(price) {
+  if (!price || !price.startsWith("$")) return null;
+  const value = parseFloat(price.slice(1));
+  return Number.isNaN(value) ? null : value;
+}
+
 function buildMessage(form) {
+  const isDelivery = form.fulfillment === "Delivery";
+  const unitPrice = parsePrice(
+    products.find((p) => p.label === form.product)?.price
+  );
+
   const lines = [
     "Hi! I'd like to place an order on The Paneer Pantry website:",
     "",
@@ -31,10 +44,15 @@ function buildMessage(form) {
     `Fulfillment: ${form.fulfillment}`,
     `Needed by: ${form.date || "Not specified"}`,
   ];
-  if (form.fulfillment === "Delivery") {
+  if (isDelivery) {
     lines.push(`Delivery address: ${form.address}`);
+    lines.push(`Delivery fee: $${DELIVERY_FEE.toFixed(2)} (islandwide)`);
   } else {
     lines.push(`Pickup at: ${pickup.address}`);
+  }
+  if (unitPrice !== null) {
+    const total = unitPrice + (isDelivery ? DELIVERY_FEE : 0);
+    lines.push(`Total: $${total.toFixed(2)}`);
   }
   if (form.notes) lines.push(`Notes: ${form.notes}`);
   lines.push("", "Please confirm availability and payment details.");
@@ -86,6 +104,11 @@ export default function OrderForm({ isOpen, initialProduct, onClose }) {
 
   const update = (field) => (e) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
+
+  const isDelivery = form.fulfillment === "Delivery";
+  const unitPrice = parsePrice(
+    products.find((p) => p.label === form.product)?.price
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -209,7 +232,7 @@ export default function OrderForm({ isOpen, initialProduct, onClose }) {
             </div>
           </div>
 
-          {form.fulfillment === "Delivery" ? (
+          {isDelivery ? (
             <label>
               Delivery address
               <input
@@ -229,6 +252,32 @@ export default function OrderForm({ isOpen, initialProduct, onClose }) {
               </span>
             </p>
           )}
+
+          {isDelivery &&
+            (unitPrice !== null ? (
+              <div className="order-summary">
+                <div className="order-summary-row">
+                  <span>{form.product}</span>
+                  <span>${unitPrice.toFixed(2)}</span>
+                </div>
+                <div className="order-summary-row">
+                  <span>Delivery fee (islandwide)</span>
+                  <span>${DELIVERY_FEE.toFixed(2)}</span>
+                </div>
+                <div className="order-summary-row order-summary-total">
+                  <span>Total</span>
+                  <span>${(unitPrice + DELIVERY_FEE).toFixed(2)}</span>
+                </div>
+              </div>
+            ) : (
+              <p className="pickup-note">
+                <Icon name="truck" size={17} />
+                <span>
+                  Delivery fee: <strong>${DELIVERY_FEE.toFixed(2)}</strong>{" "}
+                  (islandwide) — final total confirmed over WhatsApp.
+                </span>
+              </p>
+            ))}
 
           <label>
             Notes (optional)

@@ -1,6 +1,9 @@
 export const WA_NUMBER = "6587700233";
 export const WA_BASE = `https://wa.me/${WA_NUMBER}`;
 
+// Flat delivery fee, islandwide. Waived for pickup orders.
+export const DELIVERY_FEE = 3.99;
+
 export const products = [
   {
     id: 1,

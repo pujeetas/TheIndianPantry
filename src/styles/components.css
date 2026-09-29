@@ -1164,6 +1164,31 @@
   font-weight: 600;
 }
 
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  background: var(--green-tint);
+  border: 1px solid var(--green-line);
+  border-radius: var(--r-sm);
+  padding: 0.9rem 1.05rem;
+}
+
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.order-summary-total {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--green-line);
+  color: var(--brown);
+  font-weight: 600;
+}
+
 .order-form-submit {
   margin-top: 0.4rem;
 }
