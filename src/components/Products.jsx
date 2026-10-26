@@ -2,23 +2,34 @@ import { products } from "../data/content";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import Icon from "./icons/Icon";
 
-export default function Products({ onOrder }) {
+export default function Products({
+  onOrder,
+  line,
+  id,
+  eyebrow,
+  title,
+  desc,
+  tint = false,
+  showNote = false,
+}) {
+  const items = products.filter((p) => p.line === line);
+
   return (
-    <section className="products section section--tint" id="products">
+    <section
+      className={`products section${tint ? " section--tint" : ""}`}
+      id={id}
+    >
       <div className="container">
         <div className="section-header reveal">
-          <span className="eyebrow eyebrow--ruled">What We Offer</span>
-          <h2 className="section-title">
-            Fresh paneer, <em>your way</em>
-          </h2>
-          <p className="section-desc">
-            Choose the size that suits your household. Everything is made fresh
-            on delivery day — minimum order 200g.
-          </p>
+          <span className="eyebrow eyebrow--ruled">{eyebrow}</span>
+          <h2 className="section-title">{title}</h2>
+          <p className="section-desc">{desc}</p>
         </div>
 
-        <div className="products-grid">
-          {products.map((p, i) => (
+        <div
+          className={`products-grid${items.length === 2 ? " products-grid--two" : ""}`}
+        >
+          {items.map((p, i) => (
             <article
               className={`product${p.featured ? " is-featured" : ""} reveal`}
               key={p.id}
@@ -26,7 +37,7 @@ export default function Products({ onOrder }) {
             >
               <div className="product-media">
                 <img src={p.img} alt={p.alt} width={560} height={560} loading="lazy" />
-                <span className={`product-tag${p.featured ? " is-featured" : ""}`}>
+                <span className={`product-tag${p.featured || p.isNew ? " is-featured" : ""}`}>
                   {p.tag}
                 </span>
               </div>
@@ -67,11 +78,13 @@ export default function Products({ onOrder }) {
           ))}
         </div>
 
-        <p className="products-note reveal">
-          <Icon name="pin" size={17} />
-          Delivered personally across Singapore, or collect from Bukit Batok —
-          no delivery fee on pickup.
-        </p>
+        {showNote && (
+          <p className="products-note reveal">
+            <Icon name="pin" size={17} />
+            Delivered personally across Singapore, or collect from Bukit Batok —
+            no delivery fee on pickup.
+          </p>
+        )}
       </div>
     </section>
   );

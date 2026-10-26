@@ -7,6 +7,7 @@ export const DELIVERY_FEE = 3.99;
 export const products = [
   {
     id: 1,
+    line: "plain",
     name: "Fresh Paneer",
     weight: "200g",
     // `label` is logged verbatim to the order Sheet — don't reword it.
@@ -21,6 +22,7 @@ export const products = [
   },
   {
     id: 2,
+    line: "plain",
     name: "Fresh Paneer",
     weight: "400g",
     label: "Fresh Paneer – 400g ($19.00)",
@@ -34,6 +36,36 @@ export const products = [
   },
   {
     id: 3,
+    line: "masala",
+    name: "Masala Paneer",
+    weight: "200g",
+    label: "Masala Paneer – 200g ($12.00)",
+    desc: "Our fresh paneer, pressed with a blend of chilli, herbs and spices. Raw and ready to cook — sear it, grill it or toss it straight into a curry.",
+    price: "$12.00",
+    tag: "New",
+    featured: true,
+    isNew: true,
+    img: "/img/masala-paneer.jpg",
+    alt: "Cubes of spiced masala paneer flecked with chilli and herbs",
+    meta: "Pre-order only",
+  },
+  {
+    id: 4,
+    line: "masala",
+    name: "Masala Paneer",
+    weight: "400g",
+    label: "Masala Paneer – 400g ($23.00)",
+    desc: "The family size — twice the spiced paneer for weekend cooking, meal prep or sharing. Same fresh milk, same blend.",
+    price: "$23.00",
+    tag: "Value Pack",
+    featured: false,
+    img: "/img/masala-paneer-plate.jpg",
+    alt: "Herb-speckled masala paneer cubes on a plate",
+    meta: "Save $1 · Pre-order only",
+  },
+  {
+    id: 5,
+    line: "plain",
     name: "Bulk Order",
     weight: "Custom",
     label: "Bulk / Custom Order",
