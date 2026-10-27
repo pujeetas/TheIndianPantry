@@ -77,7 +77,7 @@ export default function Footer() {
           © {new Date().getFullYear()} The Paneer Pantry. All rights reserved.
         </span>
         <ul className="footer-badges">
-          <li>SFA Compliant</li>
+          <li>Made to Order</li>
           <li>No Preservatives</li>
           <li>Full-Cream Milk</li>
         </ul>
