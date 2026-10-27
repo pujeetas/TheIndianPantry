@@ -66,10 +66,6 @@ export const productLines = [
     desc: "Our fresh paneer, pressed with chilli, herbs and spices. Raw and ready to cook — sear it, grill it or toss it into a curry.",
     tag: "New",
     highlight: true,
-    // Usual notice needed to get the ingredients in. The order form shows
-    // this as the earliest date; sooner dates go through as a request.
-    leadDays: 2,
-    note: "Order 2 days ahead",
     img: "/img/masala-paneer.jpg",
     alt: "Cubes of spiced masala paneer flecked with chilli and herbs",
   },
@@ -206,10 +202,6 @@ export const faqs = [
   {
     q: "What is the minimum order?",
     a: "The minimum order is 200g at $10. We deliver personally so we ask for at least one block per delivery.",
-  },
-  {
-    q: "How much notice does Masala Paneer need?",
-    a: "Please order Masala Paneer at least 2 days ahead. We need the extra time to get the ingredients in for each batch. Need it sooner? Pick your date in the order form and we'll let you know on WhatsApp if we can make it. Fresh paneer follows the usual timing: order before 2pm for next-day delivery.",
   },
   {
     q: "How do I place an order?",

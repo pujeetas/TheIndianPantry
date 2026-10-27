@@ -38,9 +38,10 @@ function shortName(p) {
 // Orders in before 2pm can usually go out tomorrow; after that, the day after.
 const CUTOFF_HOUR = 14;
 
-/* Usual days of notice for a product: its own lead time if it has one
-   (Masala), otherwise the 2pm cutoff. Bulk timing is agreed on WhatsApp.
-   Customers can still ask for an earlier date. It's sent as a request. */
+/* Usual days of notice for a product: its own lead time if one is set
+   (`leadDays` on a product line in content.js), otherwise the 2pm cutoff.
+   Bulk timing is agreed on WhatsApp. Customers can still ask for an
+   earlier date. It's sent as a request. */
 function noticeDaysOf(p) {
   if (p.price === null) return 0;
   const own = productLines.find((l) => l.line === p.line)?.leadDays;
@@ -222,7 +223,7 @@ export default function OrderForm({ isOpen, initialProduct, onClose }) {
     }
   });
   const earliest = noticeDays > 0 ? daysFromToday(noticeDays) : null;
-  // Set only when a product with its own lead time (Masala) is the reason.
+  // Set only when a product with its own lead time is the reason.
   const slowLine = productLines.find(
     (l) => l.line === slowest?.line && l.leadDays
   );
