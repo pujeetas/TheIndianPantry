@@ -101,6 +101,7 @@ const paths = {
   arrowRight: <path d="M4 12h14.5M12.8 6.3 19 12l-6.2 5.7" />,
   chevron: <path d="m6.5 9.3 5.5 5.4 5.5-5.4" />,
   plus: <path d="M12 5.2v13.6M5.2 12h13.6" />,
+  minus: <path d="M5.2 12h13.6" />,
   close: <path d="M6 6l12 12M18 6 6 18" />,
   menu: <path d="M3.5 7h17M3.5 12h17M3.5 17h17" />,
 };

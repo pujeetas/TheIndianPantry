@@ -4,9 +4,9 @@ import WhatsAppIcon from "./icons/WhatsAppIcon";
 import Icon from "./icons/Icon";
 
 const LINKS = [
-  { href: "#about", label: "Our Story" },
   { href: "#products", label: "Products" },
   { href: "#how", label: "How to Order" },
+  { href: "#about", label: "Our Story" },
   { href: "#faq", label: "FAQ" },
 ];
 

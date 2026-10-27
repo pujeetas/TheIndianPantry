@@ -62,6 +62,33 @@
   animation-delay: 0.05s;
 }
 
+/* Launch announcement: same pill, in saffron, and it links to the menu */
+.hero-eyebrow--new {
+  color: var(--saffron-dark);
+  background: var(--saffron-tint);
+  border-color: var(--saffron-line);
+  text-decoration: none;
+  transition: background var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease);
+}
+
+.hero-eyebrow--new .pulse-dot {
+  background: var(--saffron);
+}
+
+.hero-eyebrow--new svg {
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.hero-eyebrow--new:hover {
+  background: rgba(212, 120, 42, 0.15);
+  border-color: var(--saffron);
+}
+
+.hero-eyebrow--new:hover svg {
+  transform: translateX(3px);
+}
+
 .hero-title {
   font-family: var(--font-display);
   font-size: var(--fs-display);

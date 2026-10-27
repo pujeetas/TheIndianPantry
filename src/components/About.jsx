@@ -4,7 +4,7 @@ import { values, stats } from "../data/content";
 
 export default function About() {
   return (
-    <section className="about section" id="about">
+    <section className="about section section--tint" id="about">
       <div className="container about-inner">
         <div className="about-visual reveal">
           <ArchOutline className="about-arch-line" />

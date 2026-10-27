@@ -10,10 +10,11 @@ export default function Hero({ onOrder }) {
 
       <div className="hero-inner container">
         <div className="hero-text">
-          <span className="hero-eyebrow">
+          <a className="hero-eyebrow hero-eyebrow--new" href="#products">
             <span className="pulse-dot" />
-            Made fresh daily in Singapore
-          </span>
+            New: Masala Paneer
+            <Icon name="arrowRight" size={14} strokeWidth={2.2} />
+          </a>
 
           <h1 className="hero-title">
             Homemade Paneer,

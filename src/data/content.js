@@ -4,80 +4,86 @@ export const WA_BASE = `https://wa.me/${WA_NUMBER}`;
 // Flat delivery fee, islandwide. Waived for pickup orders.
 export const DELIVERY_FEE = 3.99;
 
+/* Everything a customer can order — one entry per size. `label` is logged
+   verbatim to the order Sheet and appears in the WhatsApp message, so don't
+   reword it. `price` is null for items priced over WhatsApp. */
 export const products = [
   {
     id: 1,
     line: "plain",
-    name: "Fresh Paneer",
     weight: "200g",
-    // `label` is logged verbatim to the order Sheet — don't reword it.
     label: "Fresh Paneer – 200g ($10.00)",
-    desc: "Silky, firm-pressed homemade paneer made fresh from full-cream milk. Perfect for curries, stir-fries, and paneer tikka.",
-    price: "$10.00",
-    tag: "Best Seller",
-    featured: true,
-    img: "/img/paneer-200.jpg",
-    alt: "Freshly pressed paneer cubes with coriander",
+    price: 10,
     meta: "Minimum order",
   },
   {
     id: 2,
     line: "plain",
-    name: "Fresh Paneer",
     weight: "400g",
     label: "Fresh Paneer – 400g ($19.00)",
-    desc: "Great value for larger households or weekly meal prep. Same fresh milk quality — more to cook with, more to love.",
-    price: "$19.00",
-    tag: "Value Pack",
-    featured: false,
-    img: "/img/paneer-400.jpg",
-    alt: "A wooden platter stacked with fresh paneer blocks",
+    price: 19,
     meta: "Save $1",
   },
   {
     id: 3,
     line: "masala",
-    name: "Masala Paneer",
     weight: "200g",
     label: "Masala Paneer – 200g ($12.00)",
-    desc: "Our fresh paneer, pressed with a blend of chilli, herbs and spices. Raw and ready to cook — sear it, grill it or toss it straight into a curry.",
-    price: "$12.00",
-    tag: "New",
-    featured: true,
-    isNew: true,
-    img: "/img/masala-paneer.jpg",
-    alt: "Cubes of spiced masala paneer flecked with chilli and herbs",
-    meta: "Pre-order only",
+    price: 12,
   },
   {
     id: 4,
     line: "masala",
-    name: "Masala Paneer",
     weight: "400g",
     label: "Masala Paneer – 400g ($23.00)",
-    desc: "The family size — twice the spiced paneer for weekend cooking, meal prep or sharing. Same fresh milk, same blend.",
-    price: "$23.00",
-    tag: "Value Pack",
-    featured: false,
-    img: "/img/masala-paneer-plate.jpg",
-    alt: "Herb-speckled masala paneer cubes on a plate",
-    meta: "Save $1 · Pre-order only",
+    price: 23,
+    meta: "Save $1",
   },
   {
     id: 5,
-    line: "plain",
-    name: "Bulk Order",
+    line: "bulk",
     weight: "Custom",
     label: "Bulk / Custom Order",
-    desc: "Hosting a dinner party, festival, or event? Reach out for custom quantities and we'll work out the best arrangement for you.",
-    price: "Let's chat",
-    tag: "Custom",
-    featured: false,
-    img: "/img/paneer-bulk.jpg",
-    alt: "Close crop of paneer blocks on a wooden platter",
+    price: null,
     meta: "Parties & events",
   },
 ];
+
+/* The menu: one card per kind of paneer, listing its sizes. */
+export const productLines = [
+  {
+    line: "plain",
+    name: "Fresh Paneer",
+    desc: "Silky, firm-pressed paneer made fresh from full-cream milk. Perfect for curries, stir-fries and paneer tikka.",
+    tag: "Best Seller",
+    highlight: true,
+    img: "/img/paneer-200.jpg",
+    alt: "Freshly pressed paneer cubes with coriander",
+  },
+  {
+    line: "masala",
+    name: "Masala Paneer",
+    desc: "Our fresh paneer, pressed with chilli, herbs and spices. Raw and ready to cook — sear it, grill it or toss it into a curry.",
+    tag: "New",
+    highlight: true,
+    // Usual notice needed to get the ingredients in. The order form shows
+    // this as the earliest date; sooner dates go through as a request.
+    leadDays: 2,
+    note: "Order 2 days ahead",
+    img: "/img/masala-paneer.jpg",
+    alt: "Cubes of spiced masala paneer flecked with chilli and herbs",
+  },
+  {
+    line: "bulk",
+    name: "Bulk Order",
+    desc: "Hosting a dinner party, festival or event? Tell us what you need and we'll work out custom quantities with you.",
+    tag: "Custom",
+    img: "/img/paneer-bulk.jpg",
+    alt: "Close crop of paneer blocks on a wooden platter",
+  },
+];
+
+export const formatPrice = (n) => `$${n.toFixed(2)}`;
 
 /* The strip under the hero — the four things a first-time buyer wants
    to know before they'll consider ordering. */
@@ -200,6 +206,10 @@ export const faqs = [
   {
     q: "What is the minimum order?",
     a: "The minimum order is 200g at $10. We deliver personally so we ask for at least one block per delivery.",
+  },
+  {
+    q: "How much notice does Masala Paneer need?",
+    a: "Please order Masala Paneer at least 2 days ahead. We need the extra time to get the ingredients in for each batch. Need it sooner? Pick your date in the order form and we'll let you know on WhatsApp if we can make it. Fresh paneer follows the usual timing: order before 2pm for next-day delivery.",
   },
   {
     q: "How do I place an order?",

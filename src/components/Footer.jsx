@@ -1,12 +1,11 @@
 import { WA_BASE, WA_NUMBER, pickup } from "../data/content";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
-import InstagramIcon from "./icons/InstagramIcon";
 import Icon from "./icons/Icon";
 
 const LINKS = [
-  { href: "#about", label: "Our Story" },
   { href: "#products", label: "Products" },
   { href: "#how", label: "How to Order" },
+  { href: "#about", label: "Our Story" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -68,15 +67,6 @@ export default function Footer() {
               rel="noopener noreferrer"
             >
               <WhatsAppIcon size={18} />
-            </a>
-            <a
-              className="social-icon"
-              href="#"
-              aria-label="Instagram"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <InstagramIcon />
             </a>
           </div>
         </div>
